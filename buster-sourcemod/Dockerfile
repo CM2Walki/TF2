@@ -49,7 +49,7 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_RCONPW="changeme" \
 	SRCDS_PW="changeme" \
 	SRCDS_STARTMAP="ctf_2fort" \
-	SRCDS_REGION=3 \
+	SRCDS_REGION=3
 
 USER steam
 
