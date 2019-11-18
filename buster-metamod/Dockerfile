@@ -1,16 +1,15 @@
 ###########################################################
-# Dockerfile that builds a CSGO Gameserver
+# Dockerfile that builds a TF2 Gameserver
 ###########################################################
 FROM cm2network/steamcmd:root
 
 LABEL maintainer="walentinlamonos@gmail.com"
 
-ENV STEAMAPPID 740
-ENV STEAMAPPDIR /home/steam/csgo-dedicated
+ENV STEAMAPPID 232250
+ENV STEAMAPPDIR /home/steam/tf2-dedicated
 
-# Run Steamcmd and install CSGO
+# Run Steamcmd and install TF2
 # Create autoupdate config
-# Download ESL config
 # Remove packages and tidy up
 RUN set -x \
 	&& apt-get update \
@@ -30,9 +29,9 @@ RUN set -x \
 			echo 'force_install_dir ${STEAMAPPDIR}'; \
 			echo 'app_update ${STEAMAPPID}'; \
 			echo 'quit'; \
-		} > ${STEAMAPPDIR}/csgo_update.txt \
-		&& cd ${STEAMAPPDIR}/csgo \
-		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/cfg.tar.gz | tar xvzf - \
+		} > ${STEAMAPPDIR}/tf2_update.txt \
+		&& cd ${STEAMAPPDIR}/tf2 \
+		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/TF2/master/etc/cfg.tar.gz | tar xvzf - \
 		&& wget -qO- https://mms.alliedmods.net/mmsdrop/1.10/mmsource-1.10.7-git971-linux.tar.gz | tar xvzf -" \
 	&& apt-get remove --purge -y \
 		wget \
@@ -41,18 +40,15 @@ RUN set -x \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
-	SRCDS_TICKRATE=128 \
+	SRCDS_TICKRATE=66 \
 	SRCDS_PORT=27015 \
 	SRCDS_TV_PORT=27020 \
-	SRCDS_MAXPLAYERS=14 \
+	SRCDS_MAXPLAYERS=16 \
 	SRCDS_TOKEN=0 \
 	SRCDS_RCONPW="changeme" \
 	SRCDS_PW="changeme" \
-	SRCDS_STARTMAP="de_dust2" \
+	SRCDS_STARTMAP="ctf_2fort" \
 	SRCDS_REGION=3 \
-	SRCDS_MAPGROUP="mg_active" \
-	SRCDS_GAMETYPE=0 \
-	SRCDS_GAMEMODE=1
 
 USER steam
 
@@ -66,9 +62,9 @@ VOLUME $STEAMAPPDIR
 ENTRYPOINT ${STEAMCMDDIR}/steamcmd.sh \
 		+login anonymous +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} +quit \
 		&& ${STEAMAPPDIR}/srcds_run \
-			-game csgo -console -autoupdate -steam_dir ${STEAMCMDDIR} -steamcmd_script ${STEAMAPPDIR}/csgo_update.txt -usercon +fps_max $SRCDS_FPSMAX \
-			-tickrate $SRCDS_TICKRATE -port $SRCDS_PORT -tv_port $SRCDS_TV_PORT -maxplayers_override $SRCDS_MAXPLAYERS +game_type $SRCDS_GAMETYPE +game_mode $SRCDS_GAMEMODE \
-			+mapgroup $SRCDS_MAPGROUP +map $SRCDS_STARTMAP +sv_setsteamaccount $SRCDS_TOKEN +rcon_password $SRCDS_RCONPW +sv_password $SRCDS_PW +sv_region $SRCDS_REGION
+			-game tf2 -console -autoupdate -steam_dir ${STEAMCMDDIR} -steamcmd_script ${STEAMAPPDIR}/tf2_update.txt -usercon +fps_max $SRCDS_FPSMAX \
+			-tickrate $SRCDS_TICKRATE -port $SRCDS_PORT -tv_port $SRCDS_TV_PORT -maxplayers $SRCDS_MAXPLAYERS \
+			+map $SRCDS_STARTMAP +sv_setsteamaccount $SRCDS_TOKEN +rcon_password $SRCDS_RCONPW +sv_password $SRCDS_PW +sv_region $SRCDS_REGION
 
 # Expose ports
 EXPOSE 27015/tcp 27015/udp 27020/udp
