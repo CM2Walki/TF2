@@ -30,7 +30,7 @@ RUN set -x \
 			echo 'app_update ${STEAMAPPID}'; \
 			echo 'quit'; \
 		} > ${STEAMAPPDIR}/tf2_update.txt \
-		&& cd ${STEAMAPPDIR}/orangebox/tf \
+		&& cd ${STEAMAPPDIR}/tf \
 		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/TF2/master/etc/cfg.tar.gz | tar xvzf -" \
 	&& apt-get remove --purge -y \
 		wget \
