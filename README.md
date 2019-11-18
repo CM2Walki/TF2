@@ -33,8 +33,8 @@ $ docker run -d --net=host -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_T
 ## Environment Variables
 Feel free to overwrite these environment variables, using -e (--env): 
 ```dockerfile
-SRCDS_RCONPW="changeme" (value can be overwritten by tf2/cfg/server.cfg) 
-SRCDS_PW="changeme" (value can be overwritten by tf2/cfg/server.cfg) 
+SRCDS_RCONPW="changeme" (value can be overwritten by orangebox/tf/cfg/server.cfg) 
+SRCDS_PW="changeme" (value can be overwritten by orangebox/tf/cfg/server.cfg) 
 SRCDS_PORT=27015
 SRCDS_TV_PORT=27020
 SRCDS_FPSMAX=300
@@ -43,7 +43,7 @@ SRCDS_MAXPLAYERS=14
 SRCDS_REGION=3
 ```
 ## Config
-The config files can be found in the following directory: */home/steam/tf2-dedicated/tf2/cfg*
+The config files can be found in the following directory: */home/steam/tf2-dedicated/orangebox/tf/cfg*
 
 If you want to learn more about configuring a TF2 server check this [documentation](https://wiki.teamfortress.com/wiki/Dedicated_server_configuration).
 
