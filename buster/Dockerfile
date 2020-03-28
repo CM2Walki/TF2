@@ -39,7 +39,9 @@ RUN set -x \
 			echo 'quit'; \
 		} > ${STEAMAPPDIR}/tf2_update.txt \
 		&& cd ${STEAMAPPDIR}/tf \
-		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/TF2/master/etc/cfg.tar.gz | tar xvzf -" \
+		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/TF2/master/etc/cfg.tar.gz | tar xvzf - \
+		&& mkdir -p ~/.steam/sdk32 \
+		&& ln -s ${STEAMCMDDIR}/linux32/steamclient.so ~/.steam/sdk32/steamclient.so" \
 	&& apt-get remove --purge -y \
 		wget \
 	&& apt-get clean autoclean \
