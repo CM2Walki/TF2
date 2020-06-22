@@ -14,9 +14,9 @@ bash "${STEAMAPPDIR}/srcds_run" -game tf2 -console -autoupdate \
                         +fps_max "${SRCDS_FPSMAX}" \
                         -tickrate "${SRCDS_TICKRATE}" \
                         -port "${SRCDS_PORT}" \
-                        +tv_port "${SRCDS_TV_PORT} \
+                        +tv_port "${SRCDS_TV_PORT}" \
                         +clientport "${SRCDS_CLIENT_PORT}" \
-                        +maxplayers "${SRCDS_MAXPLAYERS} \
+                        +maxplayers "${SRCDS_MAXPLAYERS}" \
                         +map "${SRCDS_STARTMAP}" \
                         +sv_setsteamaccount "${SRCDS_TOKEN}" \
                         +rcon_password "${SRCDS_RCONPW}" \
