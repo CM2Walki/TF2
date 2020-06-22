@@ -24,8 +24,11 @@ RUN set -x \
 		lib32stdc++6=8.3.0-6 \
 		libtinfo5:i386=6.1+20181013-2+deb10u2 \
 		libcurl3-gnutls:i386=7.64.0-4+deb10u1 \
+
 	&& su steam -c \
-		"mkdir -p "${STEAMAPPDIR}/tf" \ 
+		"wget https://raw.githubusercontent.com/CM2Walki/TF2/master/etc/entry.sh -O "${STEAMAPPDIR}/entry.sh" \
+        	&& chmod 755 "${STEAMAPPDIR}/entry.sh" \
+		&& mkdir -p "${STEAMAPPDIR}/tf" \ 
 		&& { \
 			echo '@ShutdownOnFailedCommand 1'; \
 			echo '@NoPromptForPassword 1'; \
