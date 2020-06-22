@@ -23,55 +23,42 @@ RUN set -x \
 		lib32gcc1=1:8.3.0-6 \
 		lib32stdc++6=8.3.0-6 \
 		libtinfo5:i386=6.1+20181013-2+deb10u2 \
-		libcurl3-gnutls:i386=7.64.0-4 \
+		libcurl3-gnutls:i386=7.64.0-4+deb10u1 \
 	&& su steam -c \
-		"${STEAMCMDDIR}/steamcmd.sh \
-			+login anonymous \
-			+force_install_dir ${STEAMAPPDIR} \
-			+app_update ${STEAMAPPID} validate \
-			+quit \
+		"mkdir -p "${STEAMAPPDIR}/tf" \ 
 		&& { \
 			echo '@ShutdownOnFailedCommand 1'; \
 			echo '@NoPromptForPassword 1'; \
 			echo 'login anonymous'; \
-			echo 'force_install_dir ${STEAMAPPDIR}'; \
-			echo 'app_update ${STEAMAPPID}'; \
+			echo 'force_install_dir \"${STEAMAPPDIR}\"'; \
+			echo 'app_update \"${STEAMAPPID}\"'; \
 			echo 'quit'; \
-		} > ${STEAMAPPDIR}/tf2_update.txt \
-		&& cd ${STEAMAPPDIR}/tf \
-		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/TF2/master/etc/cfg.tar.gz | tar xvzf -" \
-	&& apt-get remove --purge -y \
-		wget \
-	&& apt-get clean autoclean \
-	&& apt-get autoremove -y \
+		} > \"${STEAMAPPDIR}/tf2_update.txt\" \
+		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/TF2/master/etc/cfg.tar.gz | tar xvzf - -C \"${STEAMAPPDIR}/tf\"" \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
 	SRCDS_TICKRATE=66 \
 	SRCDS_PORT=27015 \
 	SRCDS_TV_PORT=27020 \
+        SRCDS_NET_PUBLIC_ADDRESS="0" \
+        SRCDS_IP="0" \
 	SRCDS_MAXPLAYERS=16 \
 	SRCDS_TOKEN=0 \
 	SRCDS_RCONPW="changeme" \
 	SRCDS_PW="changeme" \
 	SRCDS_STARTMAP="ctf_2fort" \
-	SRCDS_REGION=3
+	SRCDS_REGION=3 \
+        SRCDS_HOSTNAME="New TF2 Server" \
+        SRCDS_WORKSHOP_START_MAP=0 \
+        SRCDS_HOST_WORKSHOP_COLLECTION=0 \
+        SRCDS_WORKSHOP_AUTHKEY=""
 
 USER steam
 
-WORKDIR $STEAMAPPDIR
+WORKDIR ${STEAMAPPDIR}
 
-VOLUME $STEAMAPPDIR
-
-# Set Entrypoint:
-# 1. Update server
-# 2. Start server
-ENTRYPOINT ${STEAMCMDDIR}/steamcmd.sh \
-		+login anonymous +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} +quit \
-		&& ${STEAMAPPDIR}/srcds_run \
-			-game tf -console -autoupdate -steam_dir ${STEAMCMDDIR} -steamcmd_script ${STEAMAPPDIR}/tf2_update.txt -usercon +fps_max $SRCDS_FPSMAX \
-			-tickrate $SRCDS_TICKRATE -port $SRCDS_PORT -tv_port $SRCDS_TV_PORT -maxplayers $SRCDS_MAXPLAYERS \
-			+map $SRCDS_STARTMAP +sv_setsteamaccount $SRCDS_TOKEN +rcon_password $SRCDS_RCONPW +sv_password $SRCDS_PW +sv_region $SRCDS_REGION
+CMD ["bash", "entry.sh"]
 
 # Expose ports
 EXPOSE 27015/tcp 27015/udp 27020/udp
