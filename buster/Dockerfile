@@ -6,7 +6,8 @@ FROM cm2network/steamcmd:root
 LABEL maintainer="walentinlamonos@gmail.com"
 
 ENV STEAMAPPID 232250
-ENV STEAMAPPDIR /home/steam/tf2-dedicated
+ENV STEAMAPP tf
+ENV STEAMAPPDIR /home/steam/${STEAMAPP}-dedicated
 
 # Run Steamcmd and install TF2
 # Create autoupdate config
@@ -25,7 +26,7 @@ RUN set -x \
 		libtinfo5:i386=6.1+20181013-2+deb10u2 \
 		libcurl3-gnutls:i386=7.64.0-4+deb10u1 \
 	&& su steam -c \
-		"mkdir -p \"${STEAMAPPDIR}/tf\" \
+		"mkdir -p \"${STEAMAPPDIR}/${STEAMAPP}\" \
 		&& wget https://raw.githubusercontent.com/CM2Walki/TF2/master/etc/entry.sh -O \"${STEAMAPPDIR}/entry.sh\" \
         	&& chmod 755 \"${STEAMAPPDIR}/entry.sh\" \
 		&& { \
@@ -35,8 +36,8 @@ RUN set -x \
 			echo 'force_install_dir \"${STEAMAPPDIR}\"'; \
 			echo 'app_update \"${STEAMAPPID}\"'; \
 			echo 'quit'; \
-		} > \"${STEAMAPPDIR}/tf2_update.txt\" \
-		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/TF2/master/etc/cfg.tar.gz | tar xvzf - -C \"${STEAMAPPDIR}/tf\"" \
+		} > \"${STEAMAPPDIR}/${STEAMAPP}_update.txt\" \
+		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/TF2/master/etc/cfg.tar.gz | tar xvzf - -C \"${STEAMAPPDIR}/${STEAMAPP}\"" \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
@@ -51,7 +52,7 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_PW="changeme" \
 	SRCDS_STARTMAP="ctf_2fort" \
 	SRCDS_REGION=3 \
-        SRCDS_HOSTNAME="New TF2 Server" \
+        SRCDS_HOSTNAME="New \"${STEAMAPP}\" Server" \
         SRCDS_WORKSHOP_START_MAP=0 \
         SRCDS_HOST_WORKSHOP_COLLECTION=0 \
         SRCDS_WORKSHOP_AUTHKEY=""

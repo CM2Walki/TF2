@@ -5,11 +5,11 @@ bash "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
                                 +quit
 
 # Change hostname on first launch (you can comment this out if it has done it's purpose)
-sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR}/tf2/cfg/server.cfg"
+sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
 
-bash "${STEAMAPPDIR}/srcds_run" -game tf2 -console -autoupdate \
+bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}2" -console -autoupdate \
                         -steam_dir "${STEAMCMDDIR}" \
-                        -steamcmd_script "${STEAMAPPDIR}/tf2_update.txt" \
+                        -steamcmd_script "${STEAMAPPDIR}/${STEAMAPP}_update.txt" \
                         -usercon \
                         +fps_max "${SRCDS_FPSMAX}" \
                         -tickrate "${SRCDS_TICKRATE}" \
