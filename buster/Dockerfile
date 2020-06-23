@@ -8,6 +8,7 @@ LABEL maintainer="walentinlamonos@gmail.com"
 ENV STEAMAPPID 232250
 ENV STEAMAPP tf
 ENV STEAMAPPDIR "/home/steam/${STEAMAPP}-dedicated"
+ENV DLURL https://raw.githubusercontent.com/CM2Walki/TF2
 
 # Run Steamcmd and install TF2
 # Create autoupdate config
