@@ -22,7 +22,7 @@ $ docker run -d --net=host --name=tf2-dedicated -v /home/steam/tf-dedicated/ -e 
 
 Running multiple instances (increment SRCDS_PORT and SRCDS_TV_PORT):
 ```console
-$ docker run -d --net=host --name=tf2-dedicated2 -v /home/steam/tf-dedicated2/ -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} cm2network/tf2
+$ docker run -d --net=host --name=tf2-dedicated2 -v /home/steam/tf-dedicated/ -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} cm2network/tf2
 ```
 
 `SRCDS_TOKEN` **is required to be listed & reachable;** [https://steamcommunity.com/dev/managegameservers](https://steamcommunity.com/dev/managegameservers)<br/><br/>
