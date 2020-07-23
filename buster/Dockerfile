@@ -7,7 +7,8 @@ LABEL maintainer="walentinlamonos@gmail.com"
 
 ENV STEAMAPPID 232250
 ENV STEAMAPP tf
-ENV STEAMAPPDIR "/home/steam/${STEAMAPP}-dedicated"
+ENV STEAMDIR "/home/steam"
+ENV STEAMAPPDIR "${STEAMDIR}/${STEAMAPP}-dedicated"
 ENV DLURL https://raw.githubusercontent.com/CM2Walki/TF2
 
 # Run Steamcmd and install TF2
@@ -28,8 +29,8 @@ RUN set -x \
 		libcurl3-gnutls:i386=7.64.0-4+deb10u1 \
 	&& su steam -c \
 		"mkdir -p \"${STEAMAPPDIR}/${STEAMAPP}\" \
-		&& wget "${DLURL}/master/etc/entry.sh" -O \"${STEAMAPPDIR}/entry.sh\" \
-        	&& chmod 755 \"${STEAMAPPDIR}/entry.sh\" \
+		&& wget "${DLURL}/master/etc/entry.sh" -O \"${STEAMDIR}/entry.sh\" \
+        	&& chmod 755 \"${STEAMDIR}/entry.sh\" \
 		&& { \
 			echo '@ShutdownOnFailedCommand 1'; \
 			echo '@NoPromptForPassword 1'; \
@@ -60,7 +61,7 @@ ENV SRCDS_FPSMAX=300 \
 
 USER steam
 
-WORKDIR ${STEAMAPPDIR}
+WORKDIR ${STEAMDIR}
 
 CMD ["bash", "entry.sh"]
 
