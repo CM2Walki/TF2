@@ -7,8 +7,7 @@ LABEL maintainer="walentinlamonos@gmail.com"
 
 ENV STEAMAPPID 232250
 ENV STEAMAPP tf
-ENV STEAMDIR "/home/steam"
-ENV STEAMAPPDIR "${STEAMDIR}/${STEAMAPP}-dedicated"
+ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}-dedicated"
 ENV DLURL https://raw.githubusercontent.com/CM2Walki/TF2
 
 # Run Steamcmd and install TF2
@@ -29,8 +28,8 @@ RUN set -x \
 		libcurl3-gnutls:i386=7.64.0-4+deb10u1 \
 	&& su steam -c \
 		"mkdir -p \"${STEAMAPPDIR}/${STEAMAPP}\" \
-		&& wget "${DLURL}/master/etc/entry.sh" -O \"${STEAMDIR}/entry.sh\" \
-        	&& chmod 755 \"${STEAMDIR}/entry.sh\" \
+		&& wget \"${DLURL}/master/etc/entry.sh\" -O \"${HOMEDIR}/entry.sh\" \
+        	&& chmod 755 \"${HOMEDIR}/entry.sh\" \
 		&& { \
 			echo '@ShutdownOnFailedCommand 1'; \
 			echo '@NoPromptForPassword 1'; \
@@ -39,7 +38,7 @@ RUN set -x \
 			echo 'app_update \"${STEAMAPPID}\"'; \
 			echo 'quit'; \
 		} > \"${STEAMAPPDIR}/${STEAMAPP}_update.txt\" \
-		&& wget -qO- "${DLURL}/master/etc/cfg.tar.gz" | tar xvzf - -C \"${STEAMAPPDIR}/${STEAMAPP}\"" \
+		&& wget -qO- \"${DLURL}/master/etc/cfg.tar.gz\" | tar xvzf - -C \"${STEAMAPPDIR}/${STEAMAPP}\"" \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
@@ -59,9 +58,9 @@ ENV SRCDS_FPSMAX=300 \
         SRCDS_HOST_WORKSHOP_COLLECTION=0 \
         SRCDS_WORKSHOP_AUTHKEY=""
 
-USER steam
+USER ${USER}
 
-WORKDIR ${STEAMDIR}
+WORKDIR ${HOMEDIR}
 
 CMD ["bash", "entry.sh"]
 
