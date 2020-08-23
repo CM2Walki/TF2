@@ -51,7 +51,10 @@ SRCDS_HOST_WORKSHOP_COLLECTION=0
 SRCDS_WORKSHOP_AUTHKEY="" (required to use host_workshop_map)
 ```
 ## Config
-The config files can be found in the following directory: */home/steam/tf-dedicated/tf/cfg*
+You can edit the config using this command:
+```console
+$ docker exec -it tf2-dedicated nano /home/steam/tf-dedicated/tf/cfg/server.cfg
+```
 
 If you want to learn more about configuring a TF2 server check this [documentation](https://wiki.teamfortress.com/wiki/Dedicated_server_configuration).
 
