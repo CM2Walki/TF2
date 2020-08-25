@@ -32,7 +32,7 @@ cd ${STEAMAPPDIR}
 
 bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
                         -steam_dir "${STEAMCMDDIR}" \
-                        -steamcmd_script "${STEAMAPPDIR}/${STEAMAPP}_update.txt" \
+                        -steamcmd_script "${HOMEDIR}/${STEAMAPP}_update.txt" \
                         -usercon \
                         +fps_max "${SRCDS_FPSMAX}" \
                         -tickrate "${SRCDS_TICKRATE}" \
