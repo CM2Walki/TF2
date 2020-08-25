@@ -25,18 +25,18 @@ RUN set -x \
 		lib32stdc++6=8.3.0-6 \
 		libtinfo5:i386=6.1+20181013-2+deb10u2 \
 		libcurl3-gnutls:i386=7.64.0-4+deb10u1 \
-	&& su "${USER}" -c \
-		"mkdir -p \"${STEAMAPPDIR}/${STEAMAPP}\" \
-		&& wget \"${DLURL}/master/etc/entry.sh\" -O \"${HOMEDIR}/entry.sh\" \
-		&& { \
-			echo '@ShutdownOnFailedCommand 1'; \
-			echo '@NoPromptForPassword 1'; \
-			echo 'login anonymous'; \
-			echo 'force_install_dir \"${STEAMAPPDIR}\"'; \
-			echo 'app_update \"${STEAMAPPID}\"'; \
-			echo 'quit'; \
-		} > \"${HOMEDIR}/${STEAMAPP}_update.txt\" \
-		&& chmod -R 755 \"${HOMEDIR}/entry.sh\" \"${HOMEDIR}/${STEAMAPP}_update.txt\" \"${STEAMAPPDIR}/${STEAMAPP}\"" \
+	&& mkdir -p "${STEAMAPPDIR}" \
+	&& wget "${DLURL}/master/etc/entry.sh" -O "${HOMEDIR}/entry.sh" \
+	&& { \
+		echo '@ShutdownOnFailedCommand 1'; \
+		echo '@NoPromptForPassword 1'; \
+		echo 'login anonymous'; \
+		echo 'force_install_dir "${STEAMAPPDIR}"'; \
+		echo 'app_update "${STEAMAPPID}"'; \
+		echo 'quit'; \
+	   } > "${HOMEDIR}/${STEAMAPP}_update.txt" \
+	&& chmod -R 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${HOMEDIR}/${STEAMAPP}_update.txt" \
+	&& chown -R "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${HOMEDIR}/${STEAMAPP}_update.txt" \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
