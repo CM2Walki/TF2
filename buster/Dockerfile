@@ -36,7 +36,7 @@ RUN set -x \
 			echo 'app_update \"${STEAMAPPID}\"'; \
 			echo 'quit'; \
 		} > \"${HOMEDIR}/${STEAMAPP}_update.txt\" \
-		&& chmod -R 755 \"${HOMEDIR}/entry.sh\" \"${HOMEDIR}/${STEAMAPP}_update.txt\" \"${STEAMAPPDIR}/${STEAMAPP}\" \" \
+		&& chmod -R 755 \"${HOMEDIR}/entry.sh\" \"${HOMEDIR}/${STEAMAPP}_update.txt\" \"${STEAMAPPDIR}/${STEAMAPP}\"" \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
