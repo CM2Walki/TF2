@@ -29,7 +29,6 @@ RUN set -x \
 	&& su "${USER}" -c \
 		"mkdir -p \"${STEAMAPPDIR}/${STEAMAPP}\" \
 		&& wget \"${DLURL}/master/etc/entry.sh\" -O \"${HOMEDIR}/entry.sh\" \
-        	&& chmod 755 \"${HOMEDIR}/entry.sh\" \
 		&& { \
 			echo '@ShutdownOnFailedCommand 1'; \
 			echo '@NoPromptForPassword 1'; \
@@ -37,8 +36,8 @@ RUN set -x \
 			echo 'force_install_dir \"${STEAMAPPDIR}\"'; \
 			echo 'app_update \"${STEAMAPPID}\"'; \
 			echo 'quit'; \
-		} > \"${STEAMAPPDIR}/${STEAMAPP}_update.txt\" \
-		&& wget -qO- \"${DLURL}/master/etc/cfg.tar.gz\" | tar xvzf - -C \"${STEAMAPPDIR}/${STEAMAPP}\"" \
+		} > \"${HOMEDIR}/${STEAMAPP}_update.txt\" \
+		&& chmod -R 755 \"${HOMEDIR}/entry.sh\" \"${HOMEDIR}/${STEAMAPP}_update.txt\" \"${STEAMAPPDIR}/${STEAMAPP}\" \" \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
@@ -60,9 +59,13 @@ ENV SRCDS_FPSMAX=300 \
 
 USER ${USER}
 
+VOLUME ${STEAMAPPDIR}
+
 WORKDIR ${HOMEDIR}
 
 CMD ["bash", "entry.sh"]
 
 # Expose ports
-EXPOSE 27015/tcp 27015/udp 27020/udp
+EXPOSE 27015/tcp \
+	27015/udp \
+	27020/udp
