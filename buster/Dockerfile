@@ -31,8 +31,8 @@ RUN set -x \
 		echo '@ShutdownOnFailedCommand 1'; \
 		echo '@NoPromptForPassword 1'; \
 		echo 'login anonymous'; \
-		echo 'force_install_dir "${STEAMAPPDIR}"'; \
-		echo 'app_update "${STEAMAPPID}"'; \
+		echo 'force_install_dir '"${STEAMAPPDIR}"''; \
+		echo 'app_update '"${STEAMAPPID}"''; \
 		echo 'quit'; \
 	   } > "${HOMEDIR}/${STEAMAPP}_update.txt" \
 	&& chmod -R 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${HOMEDIR}/${STEAMAPP}_update.txt" \
