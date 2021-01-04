@@ -42,6 +42,7 @@ $ docker run -d --net=host --name=tf2-dedicated2 -e SRCDS_PORT=27016 -e SRCDS_TV
 ## Environment Variables
 Feel free to overwrite these environment variables, using -e (--env): 
 ```dockerfile
+SRCDS_TOKEN="changeme" (value is is required to be listed & reachable, retrieve token here: https://steamcommunity.com/dev/managegameservers)
 SRCDS_RCONPW="changeme" (value can be overwritten by tf/cfg/server.cfg) 
 SRCDS_PW="changeme" (value can be overwritten by tf/cfg/server.cfg) 
 SRCDS_PORT=27015
