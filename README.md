@@ -77,3 +77,6 @@ This is a specialized image. It contains the plugin environment [Metamod:Source]
 
 ## `tf2:sourcemod`
 This is another specialized image. It contains both [Metamod:Source](https://www.sourcemm.net) and the popular server plugin [SourceMod](https://www.sourcemod.net) which can be found in the addons directory. [SourceMod](https://www.sourcemod.net) supports a wide variety of additional plugins that can be found [here](https://www.sourcemod.net/plugins.php).
+
+# Contributors
+[![Contributors Display](https://badges.pufler.dev/contributors/CM2Walki/tf2?size=50&padding=5&bots=false)](https://github.com/CM2Walki/tf2/graphs/contributors)
