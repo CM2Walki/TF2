@@ -10,7 +10,7 @@ This Docker image contains the dedicated server of the game.
 
 >  [TF2](https://store.steampowered.com/app/440/Team_Fortress_2/)
 
-<img src="https://www.teamfortress.com/workshop/images/tf_logo.png" alt="logo" width="300"/></img>
+<img src="https://1000logos.net/wp-content/uploads/2020/09/Team-Fortress-2-logo.png" alt="logo" width="300"/></img>
 
 # How to use this image
 ## Hosting a simple game server
