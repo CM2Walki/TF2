@@ -23,7 +23,7 @@ $ docker run -d --net=host --name=tf2-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2ne
 Running using a bind mount for data persistence on container recreation:
 ```console
 $ mkdir -p $(pwd)/tf2-data
-$ chmod 777 $(pwd)/ctf2-data # Makes sure the directory is writeable by the unprivileged container user
+$ chmod 777 $(pwd)/tf2-data # Makes sure the directory is writeable by the unprivileged container user
 $ docker run -d --net=host -v $(pwd)/tf2-data:/home/steam/tf-dedicated/ --name=tf2-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2network/tf2
 ```
 
