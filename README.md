@@ -47,15 +47,12 @@ SRCDS_RCONPW="changeme" (value can be overwritten by tf/cfg/server.cfg)
 SRCDS_PW="changeme" (value can be overwritten by tf/cfg/server.cfg) 
 SRCDS_PORT=27015
 SRCDS_TV_PORT=27020
-SRCDS_NET_PUBLIC_ADDRESS="0" (public facing ip, useful for local network setups)
 SRCDS_IP="0" (local ip to bind)
 SRCDS_FPSMAX=300
 SRCDS_TICKRATE=66
 SRCDS_MAXPLAYERS=14
 SRCDS_REGION=3
 SRCDS_HOSTNAME="New TF Server" (first launch only)
-SRCDS_WORKSHOP_START_MAP=0
-SRCDS_HOST_WORKSHOP_COLLECTION=0
 SRCDS_WORKSHOP_AUTHKEY="" (required to use host_workshop_map)
 ```
 ## Config
