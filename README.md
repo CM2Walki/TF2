@@ -53,7 +53,7 @@ SRCDS_TICKRATE=66
 SRCDS_MAXPLAYERS=14
 SRCDS_REGION=3
 SRCDS_HOSTNAME="New TF Server" (first launch only)
-SRCDS_WORKSHOP_AUTHKEY="" (required to use host_workshop_map)
+SRCDS_WORKSHOP_AUTHKEY="" (required to load workshop maps)
 ```
 ## Config
 You can edit the config using this command:
