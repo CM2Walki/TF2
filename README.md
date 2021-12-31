@@ -52,7 +52,7 @@ SRCDS_FPSMAX=300
 SRCDS_TICKRATE=66
 SRCDS_MAXPLAYERS=14
 SRCDS_REGION=3
-SRCDS_STARTMAP=ctf_2fort
+SRCDS_STARTMAP="ctf_2fort"
 SRCDS_HOSTNAME="New TF Server" (first launch only)
 SRCDS_WORKSHOP_AUTHKEY="" (required to load workshop maps)
 ```
