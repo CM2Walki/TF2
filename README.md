@@ -57,6 +57,8 @@ SRCDS_HOSTNAME="New TF Server" (first launch only)
 SRCDS_WORKSHOP_AUTHKEY="" (required to load workshop maps)
 ```
 ## Config
+The image contains static copies of the competitive config files from [UGC League](https://www.ugcleague.com/files_tf26.cfm#) and [RGL.gg](https://rgl.gg/Public/About/Configs.aspx?r=24). 
+
 You can edit the config using this command:
 ```console
 $ docker exec -it tf2-dedicated nano /home/steam/tf-dedicated/tf/cfg/server.cfg
