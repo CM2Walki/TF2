@@ -1,8 +1,8 @@
 [![Code Quality](https://img.shields.io/codacy/grade/603577e1804b42799a2ade2ae0ce0d53)](https://hub.docker.com/r/cm2network/tf2/) [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/tf2.svg)](https://hub.docker.com/r/cm2network/tf2/) [![Docker Stars](https://img.shields.io/docker/stars/cm2network/tf2.svg)](https://hub.docker.com/r/cm2network/tf2/) [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/tf2.svg)](https://hub.docker.com/r/cm2network/tf2/) [![](https://img.shields.io/docker/image-size/cm2network/tf2)](https://microbadger.com/images/cm2network/tf2) [![Discord](https://img.shields.io/discord/747067734029893653)](https://discord.gg/7ntmAwM)
 # Supported tags and respective `Dockerfile` links
--	[`latest` (*buster/Dockerfile*)](https://github.com/CM2Walki/TF2/blob/master/buster/Dockerfile)
--	[`metamod` (*buster-metamod/Dockerfile*)](https://github.com/CM2Walki/TF2/blob/master/buster-metamod/Dockerfile)
--	[`sourcemod` (*buster-sourcemod/Dockerfile*)](https://github.com/CM2Walki/TF2/blob/master/buster-sourcemod/Dockerfile)
+-	[`base`, `latest` (*bullseye/Dockerfile*)](https://github.com/CM2Walki/TF2/blob/master/bullseye/Dockerfile)
+-	[`metamod` (*bullseye-metamod/Dockerfile*)](https://github.com/CM2Walki/TF2/blob/master/bullseye-metamod/Dockerfile)
+-	[`sourcemod` (*bullseye-sourcemod/Dockerfile*)](https://github.com/CM2Walki/TF2/blob/master/bullseye-sourcemod/Dockerfile)
 
 # What is Team Fortress 2?
 Nine distinct classes provide a broad range of tactical abilities and personalities. Constantly updated with new game modes, maps, equipment and, most importantly, hats!
