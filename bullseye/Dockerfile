@@ -10,23 +10,24 @@ ENV STEAMAPP tf
 ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}-dedicated"
 ENV DLURL https://raw.githubusercontent.com/CM2Walki/TF2
 
-# Run Steamcmd and install TF2
-# Create autoupdate config
-# Remove packages and tidy up
 RUN set -x \
+	# Add i386 architecture
+	&& dpkg --add-architecture i386 \
+	# Install, update & upgrade packages
 	&& apt-get update \
+	&& apt-get upgrade -y \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		wget=1.20.1-1.1 \
-		ca-certificates=20200601~deb10u2 \
-		lib32z1=1:1.2.11.dfsg-1 \
-		libncurses5:i386=6.1+20181013-2+deb10u2 \
-		libbz2-1.0:i386=1.0.6-9.2~deb10u1 \
-		lib32gcc1=1:8.3.0-6 \
-		lib32stdc++6=8.3.0-6 \
-		libtinfo5:i386=6.1+20181013-2+deb10u2 \
-		libcurl3-gnutls:i386=7.64.0-4+deb10u2 \
+		wget=1.21-1+deb11u1 \
+		ca-certificates=20210119 \
+		lib32z1=1:1.2.11.dfsg-2+deb11u1 \
+		libncurses5:i386=6.2+20201114-2 \
+		libbz2-1.0:i386=1.0.8-4 \
+		libtinfo5:i386=6.2+20201114-2 \
+		libcurl3-gnutls:i386=7.74.0-1.3+deb11u1 \
 	&& mkdir -p "${STEAMAPPDIR}" \
+	# Add entry script
 	&& wget "${DLURL}/master/etc/entry.sh" -O "${HOMEDIR}/entry.sh" \
+	# Create autoupdate config
 	&& { \
 		echo '@ShutdownOnFailedCommand 1'; \
 		echo '@NoPromptForPassword 1'; \
@@ -37,6 +38,7 @@ RUN set -x \
 	   } > "${HOMEDIR}/${STEAMAPP}_update.txt" \
 	&& chmod +x "${HOMEDIR}/entry.sh" \
 	&& chown -R "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${HOMEDIR}/${STEAMAPP}_update.txt" \
+	# Clean up
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
@@ -56,9 +58,8 @@ ENV SRCDS_FPSMAX=300 \
         SRCDS_HOST_WORKSHOP_COLLECTION=0 \
         SRCDS_WORKSHOP_AUTHKEY=""
 
+# Switch to user
 USER ${USER}
-
-VOLUME ${STEAMAPPDIR}
 
 WORKDIR ${HOMEDIR}
 
