@@ -15,7 +15,6 @@ RUN set -x \
 	&& dpkg --add-architecture i386 \
 	# Install, update & upgrade packages
 	&& apt-get update \
-	&& apt-get upgrade -y \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		wget=1.21-1+deb11u1 \
 		ca-certificates=20210119 \
