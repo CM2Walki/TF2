@@ -58,6 +58,7 @@ SRCDS_STARTMAP="ctf_2fort"
 SRCDS_HOSTNAME="New TF Server" (first launch only)
 SRCDS_WORKSHOP_AUTHKEY="" (required to load workshop maps)
 SRCDS_CFG="server.cfg"
+SRCDS_MAPCYCLE="mapcycle.txt"
 ```
 
 ## Config
