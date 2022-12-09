@@ -58,7 +58,7 @@ SRCDS_STARTMAP="ctf_2fort"
 SRCDS_HOSTNAME="New TF Server" (first launch only)
 SRCDS_WORKSHOP_AUTHKEY="" (required to load workshop maps)
 SRCDS_CFG="server.cfg"
-SRCDS_MAPCYCLE="mapcycle.txt"
+SRCDS_MAPCYCLE="mapcycle_default.txt" (value can be overwritten by tf/cfg/server.cfg)
 SRCDS_SECURED=1 (0 to start the server as insecured)
 ```
 

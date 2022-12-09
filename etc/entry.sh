@@ -53,6 +53,6 @@ bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
                         +sv_region "${SRCDS_REGION}" \
                         -ip "${SRCDS_IP}" \
                         -authkey "${SRCDS_WORKSHOP_AUTHKEY}" \
-                        +servercfg "${SRCDS_CFG}" \
-                        +mapcycle "${SRCDS_MAPCYCLE}" \
+                        +servercfgfile "${SRCDS_CFG}" \
+                        +mapcyclefile "${SRCDS_MAPCYCLE}" \
                         ${SERVER_SECURITY_FLAG}
