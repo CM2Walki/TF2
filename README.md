@@ -57,7 +57,9 @@ SRCDS_REGION=3
 SRCDS_STARTMAP="ctf_2fort"
 SRCDS_HOSTNAME="New TF Server" (first launch only)
 SRCDS_WORKSHOP_AUTHKEY="" (required to load workshop maps)
+SRCDS_CFG="server.cfg"
 ```
+
 ## Config
 The image contains static copies of the competitive config files from [UGC League](https://www.ugcleague.com/files_tf26.cfm#) and [RGL.gg](https://rgl.gg/Public/About/Configs.aspx?r=24). 
 
@@ -65,6 +67,7 @@ You can edit the config using this command:
 ```console
 $ docker exec -it tf2-dedicated nano /home/steam/tf-dedicated/tf/cfg/server.cfg
 ```
+Or if you want to explicitly specify a server config file, use the `SRCDS_CFG` environment variable.
 
 If you want to learn more about configuring a TF2 server check this [documentation](https://wiki.teamfortress.com/wiki/Dedicated_server_configuration).
 
