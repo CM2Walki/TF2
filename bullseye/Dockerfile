@@ -59,7 +59,8 @@ ENV SRCDS_FPSMAX=300 \
         SRCDS_HOST_WORKSHOP_COLLECTION=0 \
         SRCDS_WORKSHOP_AUTHKEY="" \
 	SRCDS_CFG="server.cfg" \
-	SRCDS_MAPCYCLE="mapcycle.txt"
+	SRCDS_MAPCYCLE="mapcycle.txt" \
+	SRCDS_SECURED=1
 
 # Switch to user
 USER ${USER}
