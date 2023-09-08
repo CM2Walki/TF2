@@ -30,6 +30,12 @@ fi
 # Believe it or not, if you don't do this srcds_run shits itself
 cd "${STEAMAPPDIR}"
 
+SERVER_SECURITY_FLAG="-secured";
+
+if [ "$SRCDS_SECURED" -eq 0]; then
+        SERVER_SECURITY_FLAG="-insecured";
+fi
+
 bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
                         -steam_dir "${STEAMCMDDIR}" \
                         -steamcmd_script "${HOMEDIR}/${STEAMAPP}_update.txt" \
@@ -46,4 +52,7 @@ bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
                         +sv_password "${SRCDS_PW}" \
                         +sv_region "${SRCDS_REGION}" \
                         -ip "${SRCDS_IP}" \
-                        -authkey "${SRCDS_WORKSHOP_AUTHKEY}"
+                        -authkey "${SRCDS_WORKSHOP_AUTHKEY}" \
+                        +servercfgfile "${SRCDS_CFG}" \
+                        +mapcyclefile "${SRCDS_MAPCYCLE}" \
+                        ${SERVER_SECURITY_FLAG}

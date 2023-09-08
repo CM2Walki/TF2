@@ -57,7 +57,10 @@ ENV SRCDS_FPSMAX=300 \
         SRCDS_HOSTNAME="New \"${STEAMAPP}\" Server" \
         SRCDS_WORKSHOP_START_MAP=0 \
         SRCDS_HOST_WORKSHOP_COLLECTION=0 \
-        SRCDS_WORKSHOP_AUTHKEY=""
+        SRCDS_WORKSHOP_AUTHKEY="" \
+	SRCDS_CFG="server.cfg" \
+	SRCDS_MAPCYCLE="mapcycle_default.txt" \
+	SRCDS_SECURED=1
 
 # Switch to user
 USER ${USER}
