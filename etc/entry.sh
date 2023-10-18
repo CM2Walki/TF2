@@ -33,7 +33,7 @@ cd "${STEAMAPPDIR}"
 SERVER_SECURITY_FLAG="-secured";
 
 if [ "$SRCDS_SECURED" -eq 0]; then
-        SERVER_SECURITY_FLAG="-insecured";
+        SERVER_SECURITY_FLAG="-insecure";
 fi
 
 bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
