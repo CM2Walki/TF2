@@ -30,10 +30,10 @@ fi
 # Believe it or not, if you don't do this srcds_run shits itself
 cd "${STEAMAPPDIR}"
 
-SERVER_SECURITY_FLAG="-secured";
+SERVER_SECURITY_FLAG="";
 
-if [ "$SRCDS_SECURED" -eq 0]; then
-        SERVER_SECURITY_FLAG="-insecured";
+if [ "$SRCDS_SECURED" -eq 0 ]; then
+        SERVER_SECURITY_FLAG="-insecure";
 fi
 
 bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
