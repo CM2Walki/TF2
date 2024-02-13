@@ -40,7 +40,7 @@ RUN set -x \
 	# Clean up
 	&& rm -rf /var/lib/apt/lists/*
 
-FROM build_stage AS bullseye-base
+FROM build_stage AS bookworm-base
 
 ENV SRCDS_FPSMAX=300 \
 	SRCDS_TICKRATE=66 \
