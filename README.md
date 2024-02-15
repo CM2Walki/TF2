@@ -17,19 +17,19 @@ This Docker image contains the dedicated server of the game.
 
 Running on the *host* interface (recommended):<br/>
 ```console
-$ docker run -d -it --net=host --name=tf2-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2network/tf2
+$ docker run -d --net=host --name=tf2-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2network/tf2
 ```
 
 Running using a bind mount for data persistence on container recreation:
 ```console
 $ mkdir -p $(pwd)/tf2-data
 $ chmod 777 $(pwd)/tf2-data # Makes sure the directory is writeable by the unprivileged container user
-$ docker run -d -it --net=host -v $(pwd)/tf2-data:/home/steam/tf-dedicated/ --name=tf2-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2network/tf2
+$ docker run -d --net=host -v $(pwd)/tf2-data:/home/steam/tf-dedicated/ --name=tf2-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2network/tf2
 ```
 
 Running multiple instances (increment SRCDS_PORT and SRCDS_TV_PORT):
 ```console
-$ docker run -d -it --net=host --name=tf2-dedicated2 -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} cm2network/tf2
+$ docker run -d --net=host --name=tf2-dedicated2 -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} cm2network/tf2
 ```
 
 `SRCDS_TOKEN` **is required to be listed & reachable. Generate one here using AppID `440`:**  
