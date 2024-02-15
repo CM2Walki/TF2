@@ -8,7 +8,9 @@ LABEL maintainer="walentinlamonos@gmail.com"
 ENV STEAMAPPID 232250
 ENV STEAMAPP tf
 ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}-dedicated"
-ENV DLURL https://raw.githubusercontent.com/CM2Walki/TF2
+
+COPY "etc/entry.sh" "${HOMEDIR}/entry.sh"
+COPY "etc/cfg" "${STEAMAPPDIR}/${STEAMAPP}/cfg/"
 
 RUN set -x \
 	# Add i386 architecture
@@ -24,8 +26,6 @@ RUN set -x \
 		libtinfo5:i386=6.4-4 \
 		libcurl3-gnutls:i386=7.88.1-10+deb12u5 \
 	&& mkdir -p "${STEAMAPPDIR}" \
-	# Add entry script
-	&& wget "${DLURL}/master/etc/entry.sh" -O "${HOMEDIR}/entry.sh" \
 	# Create autoupdate config
 	&& { \
 		echo '@ShutdownOnFailedCommand 1'; \
