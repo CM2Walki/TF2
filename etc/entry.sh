@@ -6,6 +6,13 @@ bash "${STEAMCMDDIR}/steamcmd.sh" +force_install_dir "${STEAMAPPDIR}" \
 				+app_update "${STEAMAPPID}" \
 				+quit
 
+# Use 64-bit srcds if not in a metamod/sourcemod container
+if [ "$SRCDS_64BIT" -eq 1 ]; then
+    if [ -z "$METAMOD_VERSION" ] && [ -z "$SOURCEMOD_VERSION" ]; then
+            X64_FLAG="_64"
+    fi
+fi
+
 # Are we in a metamod container and is the metamod folder missing?
 if  [ ! -z "$METAMOD_VERSION" ] && [ ! -d "${STEAMAPPDIR}/${STEAMAPP}/addons/metamod" ]; then
         LATESTMM=$(wget -qO- https://mms.alliedmods.net/mmsdrop/"${METAMOD_VERSION}"/mmsource-latest-linux)
@@ -31,10 +38,6 @@ SERVER_SECURITY_FLAG="";
 
 if [ "$SRCDS_SECURED" -eq 0 ]; then
         SERVER_SECURITY_FLAG="-insecure";
-fi
-
-if [ "$SRCDS_64BIT" -eq 1 ]; then
-        X64_FLAG="_64";
 fi
 
 bash "${STEAMAPPDIR}/srcds_run${X64_FLAG}" -game "${STEAMAPP}" -console -autoupdate \
