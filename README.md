@@ -60,7 +60,6 @@ SRCDS_WORKSHOP_AUTHKEY="" (required to load workshop maps)
 SRCDS_CFG="server.cfg"
 SRCDS_MAPCYCLE="mapcycle_default.txt" (value can be overwritten by tf/cfg/server.cfg)
 SRCDS_SECURED=1 (0 to start the server as insecured)
-SRCDS_64BIT=0 (1 to enable 64-bit, only without SourceMod)
 ```
 
 ## Config
@@ -75,7 +74,7 @@ Or if you want to explicitly specify a server config file, use the `SRCDS_CFG` e
 If you want to learn more about configuring a TF2 server check this [documentation](https://wiki.teamfortress.com/wiki/Dedicated_server_configuration).
 
 # Image Variants:
-The `tf2` images come in three flavors, each designed for a specific use case.
+The `tf2` images come in three flavors, each designed for a specific use case, with a 64-bit version if needed.
 
 ## `tf2:latest`
 This is the defacto image. If you are unsure about what your needs are, you probably want to use this one. It is a bare-minimum TF2 dedicated server containing no 3rd party plugins.<br/>
@@ -85,6 +84,11 @@ This is a specialized image. It contains the plugin environment [Metamod:Source]
 
 ## `tf2:sourcemod`
 This is another specialized image. It contains both [Metamod:Source](https://www.sourcemm.net) and the popular server plugin [SourceMod](https://www.sourcemod.net) which can be found in the addons directory. [SourceMod](https://www.sourcemod.net) supports a wide variety of additional plugins that can be found [here](https://www.sourcemod.net/plugins.php).
+
+## `tf2:[variant]-x64`
+A 64-bit version of all three variants, i.e. `latest-x64`, `metamod-x64`, and `sourcemod-x64`. This will run a fully 64-bit server, `srcds_linux64`, with a 64-bit version of Metamod or SourceMod.
+### Which to use?
+If you require SourceMod and aren't fully sure whether your plugins work on 64-bit servers, it's better to use the normal 32-bit variant, `tf2:sourcemod`. If you want to run a server without any plugins, `tf2:latest-x64` is preferred.
 
 # Contributors
 [![Contributors Display](https://badges.pufler.dev/contributors/CM2Walki/tf2?size=50&padding=5&bots=false)](https://github.com/CM2Walki/tf2/graphs/contributors)

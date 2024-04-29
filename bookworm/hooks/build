@@ -4,3 +4,7 @@ BUILD_PATH=$(echo ${DOCKERFILE_PATH}| sed 's#/#..#g' | sed 's#[a-zA-Z0-9]\+#/#g'
 docker build --target=bookworm-base -f $(basename ${DOCKERFILE_PATH}) -t $DOCKER_REPO:latest -t $DOCKER_REPO:base ${BUILD_PATH}.
 docker build --target=bookworm-metamod -f $(basename ${DOCKERFILE_PATH}) -t $DOCKER_REPO:metamod ${BUILD_PATH}.
 docker build --target=bookworm-sourcemod -f $(basename ${DOCKERFILE_PATH}) -t $DOCKER_REPO:sourcemod ${BUILD_PATH}.
+
+docker build --target=bookworm-base -f $(basename ${DOCKERFILE_PATH}) -t $DOCKER_REPO:latest-x64 -t $DOCKER_REPO:base ${BUILD_PATH}.
+docker build --target=bookworm-metamod -f $(basename ${DOCKERFILE_PATH}) -t $DOCKER_REPO:metamod-x64 ${BUILD_PATH}.
+docker build --target=bookworm-sourcemod -f $(basename ${DOCKERFILE_PATH}) -t $DOCKER_REPO:sourcemod-x64 ${BUILD_PATH}.

@@ -33,7 +33,7 @@ if [ "$SRCDS_SECURED" -eq 0 ]; then
         SERVER_SECURITY_FLAG="-insecure";
 fi
 
-bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
+bash "${STEAMAPPDIR}/srcds_run_64" -game "${STEAMAPP}" -console -autoupdate \
                         -steam_dir "${STEAMCMDDIR}" \
                         -steamcmd_script "${HOMEDIR}/${STEAMAPP}_update.txt" \
                         -usercon \
