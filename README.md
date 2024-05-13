@@ -43,6 +43,35 @@ $ docker run -d --net=host --name=tf2-dedicated2 -e SRCDS_PORT=27016 -e SRCDS_TV
 **It's also recommended to use "--cpuset-cpus=" to limit the game server to a specific core & thread.**<br/>
 **The container will automatically update the game on startup, so if there is a game update just restart the container.**
 
+### Using docker compose
+Instead of using `docker run`, you can use `docker compose` as well, which removes the need for manually running long commands or scripts, especially useful if you want multiple servers.
+An example docker-compose.yml is provided below.
+```yaml
+services:
+  tf2:
+    # Allocates a stdin (docker run -i)
+    stdin_open: true
+    # Allocates a tty (docker run -t)
+    tty: true
+    # Max CPUs to allocate, float, so e.g. 3.5 can be set.
+    cpus: 4
+    # Specific CPUs to allocate, 0-3 is first 4 CPUs, "0,1,2,3" can be used as well
+    cpuset: 0-3
+    # Use the host network, RECOMMENDED.
+    network_mode: host
+    # Binds /srv/tf2-dir to /home/steam/tf-dedicated in the container
+    volumes:
+      - /srv/tf2-dir:/home/steam/tf-dedicated
+    container_name: tf2-dedicated
+    environment:
+      SRCDS_TOKEN: "0123456789DEADB33F"
+      SRCDS_PW: "examplepassword"
+      # Rest of your env vars...
+    image: cm2network/tf2:latest
+```
+This will create a container called `tf2-dedicated`, with a bind mount for persistent data. This is especially recommended with compose, as `docker compose down` ***removes*** the defined containers.<br/>
+For environment variables, you can also use an `.env` file.
+
 # Configuration
 ## Environment Variables
 Feel free to overwrite these environment variables, using -e (--env): 
