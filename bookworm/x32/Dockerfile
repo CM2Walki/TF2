@@ -67,7 +67,7 @@ USER ${USER}
 
 WORKDIR ${HOMEDIR}
 
-CMD ["bash", "entry.sh"]
+ENTRYPOINT [ "./entry.sh" ]
 
 # Expose ports
 EXPOSE 27015/tcp \
