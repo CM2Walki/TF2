@@ -52,4 +52,5 @@ bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
                         -authkey "${SRCDS_WORKSHOP_AUTHKEY}" \
                         +servercfgfile "${SRCDS_CFG}" \
                         +mapcyclefile "${SRCDS_MAPCYCLE}" \
-                        ${SERVER_SECURITY_FLAG}
+                        ${SERVER_SECURITY_FLAG} \
+                        $@
