@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir -p "${STEAMAPPDIR}" || true  
+mkdir -p "${STEAMAPPDIR}" || true
 
 bash "${STEAMCMDDIR}/steamcmd.sh" +force_install_dir "${STEAMAPPDIR}" \
 				+login anonymous \
@@ -19,7 +19,7 @@ if  [ ! -z "$SOURCEMOD_VERSION" ] && [ ! -d "${STEAMAPPDIR}/${STEAMAPP}/addons/s
 fi
 
 # Is the config missing?
-if [ ! -f "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg" ]; then
+if [ -f "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg" ]; then
         # Change hostname on first launch (you can comment this out if it has done its purpose)
         sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
 fi
