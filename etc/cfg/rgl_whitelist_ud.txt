@@ -1,0 +1,7 @@
+This is just a placeholder file meant for development builds. The correct files are AUTOMATICALLY included in the release builds of the plugin.
+
+If you have this file downloaded, then you did not properly follow the instructions listed in the README.md: https://github.com/RGLgg/server-resources-updater/blob/master/README.md
+
+Please get the server-resources-udpater.zip file from here: https://github.com/RGLgg/server-resources-updater/releases/latest
+
+If you want to check to see what the latest whitelist being used by the plugin is, you can find them here: https://github.com/RGLgg/server-resources-updater/tree/updater/cfg
