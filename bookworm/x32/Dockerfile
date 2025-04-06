@@ -18,7 +18,7 @@ RUN set -x \
 	# Install, update & upgrade packages
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		wget=1.21.3-1+b2 \
+		wget=1.21.3-1+deb12u1 \
 		ca-certificates=20230311 \
 		lib32z1=1:1.2.13.dfsg-1 \
 		libncurses5:i386=6.4-4 \
@@ -76,7 +76,7 @@ EXPOSE 27015/tcp \
 
 FROM bookworm-base AS bookworm-metamod
 
-ENV METAMOD_VERSION 1.11
+ENV METAMOD_VERSION 1.12
 
 FROM bookworm-metamod AS bookworm-sourcemod
 
