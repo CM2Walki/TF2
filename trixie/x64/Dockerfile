@@ -13,18 +13,16 @@ COPY "etc/entry.sh" "${HOMEDIR}/entry.sh"
 COPY "etc/cfg" "${STEAMAPPDIR}/${STEAMAPP}/cfg/"
 
 RUN set -x \
-	# Add i386 architecture
-	&& dpkg --add-architecture i386 \
 	# Install, update & upgrade packages
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		wget=1.21.3-1+deb12u1 \
-		ca-certificates=20230311+deb12u1 \
-		lib32z1=1:1.2.13.dfsg-1 \
-		libncurses5:i386=6.4-4 \
-		libbz2-1.0:i386=1.0.8-5+b1 \
-		libtinfo5:i386=6.4-4 \
-		libcurl3-gnutls:i386=7.88.1-10+deb12u5 \
+		wget=1.25.0-2 \
+		ca-certificates=20250419 \
+		zlib1g=1:1.3.dfsg+really1.3.1-1+b1 \
+		libncurses6=6.5+20250216-2 \
+		libbz2-1.0=1.0.8-6 \
+		libtinfo6=6.5+20250216-2 \
+		libcurl3t64-gnutls=8.14.1-2+deb13u2 \
 	&& mkdir -p "${STEAMAPPDIR}" \
 	# Create autoupdate config
 	&& { \
@@ -40,7 +38,7 @@ RUN set -x \
 	# Clean up
 	&& rm -rf /var/lib/apt/lists/*
 
-FROM build_stage AS bookworm-base
+FROM build_stage AS trixie-base
 
 ENV SRCDS_FPSMAX=300 \
 	SRCDS_TICKRATE=66 \
@@ -62,7 +60,8 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_MAPCYCLE="mapcycle.txt" \
 	SRCDS_SECURED=1 \
 	SRCDS_SDR_FAKEIP=0 \
-	SRCDS_REPLAY=0
+	SRCDS_REPLAY=0 \
+	SRCDS_BINARY="srcds_run_64"
 
 # Switch to user
 USER ${USER}
@@ -76,10 +75,10 @@ EXPOSE 27015/tcp \
 	27015/udp \
 	27020/udp
 
-FROM bookworm-base AS bookworm-metamod
+FROM trixie-base AS trixie-metamod
 
 ENV METAMOD_VERSION 1.12
 
-FROM bookworm-metamod AS bookworm-sourcemod
+FROM trixie-metamod AS trixie-sourcemod
 
 ENV SOURCEMOD_VERSION 1.12

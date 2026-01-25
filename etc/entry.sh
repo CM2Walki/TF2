@@ -1,6 +1,9 @@
 #!/bin/bash
 mkdir -p "${STEAMAPPDIR}" || true
 
+# Possible fix for server refusing to update
+rm -r "${STEAMAPPDIR}/steamapps" || true
+
 bash "${STEAMCMDDIR}/steamcmd.sh" +force_install_dir "${STEAMAPPDIR}" \
 				+login anonymous \
 				+app_update "${STEAMAPPID}" \
@@ -45,7 +48,7 @@ if [ "$SRCDS_REPLAY" -eq 1 ]; then
         REPLAY_FLAG="-replay";
 fi
 
-bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
+bash "${STEAMAPPDIR}/${SRCDS_BINARY}" -game "${STEAMAPP}" -console -autoupdate \
                         -steam_dir "${STEAMCMDDIR}" \
                         -steamcmd_script "${HOMEDIR}/${STEAMAPP}_update.txt" \
                         -usercon \
