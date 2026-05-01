@@ -20,8 +20,11 @@ fi
 
 # Is the config missing?
 if [ -f "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg" ]; then
-        # Change hostname on first launch (you can comment this out if it has done its purpose)
-        sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
+        # Change hostname on first launch (you can comment this out if it has
+        # done its purpose). The hostname needs to be escaped first for the
+        # convar and second for the sed expression.
+        ESCAPED=$(echo "${SRCDS_HOSTNAME}" | sed -e 's/"/\\&/g' -e 's/[\\/&]/\\&/g')
+        sed -i -e "s/{{SERVER_HOSTNAME}}/${ESCAPED}/g" "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
 fi
 
 # Believe it or not, if you don't do this srcds_run shits itself
